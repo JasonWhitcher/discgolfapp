@@ -1,0 +1,210 @@
+/*
+Stylesheet for pwa-disc-golf
+*/
+* {
+  color: gray; }
+
+body {
+  margin: 0;
+  padding: 1px;
+  font-size: 18px;
+  background-color: white; }
+
+h1 {
+  font-size: 1.4em; }
+
+h2 {
+  font-size: 1.3em; }
+
+h3 {
+  font-size: 1.2em; }
+
+h4, h5, h6 {
+  font-size: 1.1em; }
+
+a,
+a:hover,
+a:visited,
+a:active {
+  text-decoration: none;
+  color: #CC8438; }
+
+label {
+  font-size: 18px; }
+
+input[type="text"] {
+  padding: 3px;
+  border: 1px solid #CDFF88;
+  border-radius: 5px;
+  font-size: 1.2em; }
+
+input[type="button"],
+input[type="submit"] {
+  width: 33%;
+  font-size: 18px;
+  border: none;
+  border-radius: 5px;
+  background-color: #CDFF88; }
+
+.dg-strong {
+  font-weight: bold; }
+
+/*hide default spinner buttons*/
+input[type="number"] {
+  -webkit-appearance: textfield;
+  -moz-appearance: textfield;
+  appearance: textfield; }
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none; }
+
+/*end--hide default spinner buttons*/
+.dg-number-input {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: nowrap;
+  align-items: center; }
+  .dg-number-input label {
+    display: inline-block;
+    margin-right: 2.0em; }
+  .dg-number-input div.dg-number-input {
+    display: inline-block; }
+  .dg-number-input input[type="number"] {
+    height: 1.2em;
+    width: 1.5em;
+    margin: 0 1.0em;
+    padding: 5px;
+    border: 1px solid #CDFF88;
+    font-size: 1.2em; }
+  .dg-number-input input.dg-incrementor {
+    margin: 0;
+    padding: 0;
+    border: 1px solid #CDFF88;
+    height: 1.3em;
+    width: 1.3em;
+    border-radius: 50% 50%;
+    font-size: 1.3em;
+    background-color: white; }
+
+header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #CDFF88; }
+  header nav,
+  header h1 {
+    padding: 0 10px; }
+
+article {
+  position: relative; }
+  article .dg-modal {
+    /*position: relative;
+    top: 0px;
+    left: 0px;*/
+    width: 88%;
+    padding: 05%;
+    border: 1px solid #CC8438; }
+  article .dg-menu-container {
+    font-size: 1.5em; }
+
+.dg-button-group-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-top: 2.0em; }
+  .dg-button-group-container input[type="button"],
+  .dg-button-group-container input[type="submit"] {
+    margin: 10px 5px;
+    padding: 0.5em; }
+
+/* Functionality styles */
+#dg-menu-container,
+#dg-change-par-container,
+#dg-end-game-container,
+#dg-add-players-container,
+#dg-starting-hole-container,
+#dg-set-par-container,
+#dg-start-game,
+#dg-main-scoring-container,
+#dg-scorecard-container {
+  display: none; }
+
+.dg-show {
+  display: block !important; }
+
+/* Page/Modal specific styles */
+.dg-menu-container a {
+  font-size: 1.2em; }
+
+#dg-starting-hole-container input#dg-button-set-starting-hole {
+  width: 66%; }
+
+#dg-set-par-container #dg-set-par-current-hole {
+  font-size: 1.3em;
+  font-weight: bold; }
+
+#dg-main-scoring-container #dg-main-scoring-hole-par {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  margin: 0.4em 0; }
+  #dg-main-scoring-container #dg-main-scoring-hole-par #dg-main-scoring-current-hole,
+  #dg-main-scoring-container #dg-main-scoring-hole-par #dg-main-scoring-current-par {
+    font-size: 1.3em; }
+#dg-main-scoring-container .dg-main-scoring-line {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.3em;
+  border-bottom: 1px solid #CDFF88;
+  /*+ p {
+  	width: 150px;
+  }*/ }
+  #dg-main-scoring-container .dg-main-scoring-line .dg-main-scoring-player-name {
+    width: 33%; }
+
+#dg-scorecard-container .dg-scorecard-player-container {
+  margin-bottom: 1.5em; }
+#dg-scorecard-container .dg-scorecard-player-heading {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 0;
+  margin: 0.2em 0; }
+#dg-scorecard-container table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 0.4em; }
+  #dg-scorecard-container table td {
+    border: 1px solid #CC8438;
+    text-align: center; }
+
+.dg-scorecard-holes-1-9,
+.dg-scorecard-holes-10-18,
+.dg-scorecard-holes-19-27,
+.dg-scorecard-holes-28-36 {
+  display: none; }
+
+.dg-scorecard-hole-heading {
+  background-color: #ffffff; }
+
+.dg-scorecard-hole-not-played {
+  background-color: #999999; }
+
+.dg-scorecard-hole-under-par {
+  background-color: #c6ffbc; }
+
+.dg-scorecard-hole-on-par {
+  background-color: #f2f2f2; }
+
+.dg-scorecard-hole-over-par {
+  background-color: #fcd9da; }
+
+/*# sourceMappingURL=style.css.map */

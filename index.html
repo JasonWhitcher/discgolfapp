@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="theme-color" content="#CDFF88">
+
+	<!--<link rel="apple-touch-icon" href="/images/icon-dg-192.png">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="#CDFF88">
+	<meta name="apple-mobile-web-app-title" content="Disc Golf Scorecard">
+	<meta name="msapplication-TitleImage" content="/images/icon-dg-192.png">
+	<meta name="msapplication-TitleColor" content="#CDFF88">-->
+	
+	<title>Disc Golf Scorecard</title>
+        <meta name="description" content="The best disc golf scoring progressive web app ever.">
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<link rel="manifest" href="manifest.json">
+	<script type="text/javascript" src="script.js"></script>
+</head>
+<body>
+	<header>
+		<nav id="dg-main-menu-button" class="dg-main-menu-button">
+			<div>
+				<p>Menu</p>
+			</div>
+		</nav>
+		<h1>
+			Disc Golf Scorecard
+		</h1>
+	</header>
+	<article>
+		<!--<div id="dg-menu-container" class="dg-modal dg-menu-container">--><!--menu-->
+		<div id="dg-menu-container" class="dg-modal"><!--menu-->
+			<p id="dg-start-game-menu-link"><a href="#">start game</a></p>
+			<p id="dg-end-game-menu-link"><a href="#">end game</a></p>
+			<p id="dg-change-par-menu-link"><a href="#">change current hole's par</a></p>
+		</div>
+		<div id="dg-start-game" class="dg-modal"><!--start page-->
+			<div class="dg-button-group-container">
+				<input id="dg-button-start-game" type="button" name="" value="start game">
+			</div>
+		</div>
+		<div id="dg-end-game-container" class="dg-modal"><!--end game-->
+			<h1>End the Current Game<br />and<br />Show Final Scorecard</h1>
+			<div class="dg-button-group-container">
+				<input type="button" name="" value="cancel">
+				<input type="button" name="" value="end game">
+			</div>
+		</div>
+		
+		<div id="dg-add-players-container" class="dg-modal"><!--add players-->
+			<h1>Add Players to the Game</h1>
+			<label>player name</label>
+			<input type="text" id="dg-add-player-input" name="" autofocus="">
+			<div class="dg-button-group-container">
+				<input type="button" id="dg-button-add-player-finish" name="" value="finish" disabled="disabled">
+				<input type="button" id="dg-button-add-player" name="" value="add player">
+			</div>
+			<div id="dg-add-player-list">
+				<!--js will add names here with <p>-->				
+			</div>
+		</div>
+		<div id="dg-starting-hole-container" class="dg-modal"><!--starting hole-->
+			<h1>Enter Starting Hole</h1>
+			<div class="dg-number-input">
+				<label>starting hole</label>
+				<input onclick="dg_input_number_decrementor(this);" type="button" class="dg-incrementor" value="-">
+				<input type="number" id="dg-starting-hole-input" name="" value="1">
+				<input onclick="dg_input_number_incrementor(this);" type="button" class="dg-incrementor" value="+">
+			</div>
+			<div class="dg-button-group-container">
+				<input type="button" id="dg-button-set-starting-hole" name="" value="set starting hole">
+			</div>
+		</div>
+		<div id="dg-set-par-container" class="dg-modal"><!--set par for current hole-->
+			<h1>Set Par for Hole <span id="dg-set-par-current-hole"><!--js will place current hole number here--></span></h1>
+			<div class="dg-number-input">
+				<label>par</label>
+				<input onclick="dg_input_number_decrementor(this);" type="button" class="dg-incrementor" value="-">
+				<input type="number" id="dg-set-par-input" name="" value="1">
+				<input onclick="dg_input_number_incrementor(this);" type="button" class="dg-incrementor" value="+">
+			</div>
+			<div class="dg-button-group-container">
+				<input type="button" id="dg-button-set-par" name="" value="set par">
+			</div>
+		</div>
+		<div id="dg-main-scoring-container" class="dg-page"><!--main page-->
+			<!-- prefix id="dg-scoring" -->
+			<div id="dg-main-scoring-hole-par">
+				<div>
+					<span>Hole </span>
+					<span id="dg-main-scoring-current-hole" class="dg-strong">3<!--js will place current hole variable value here--></span>
+				</div>
+				<div>
+					<span>Par </span>
+					<span id="dg-main-scoring-current-par" class="dg-strong">4<!--js will place par for current hole variable value here--></span>
+				</div>
+			</div>
+			<div>
+				<div id="dg-main-scoring-details">
+					<!--js will loop through players and create the display here-->
+					<div class="dg-main-scoring-line" data-playerid="1">
+						<div class="dg-main-scoring-player-name">player name and more name here</div>
+						<div class="dg-main-scoring-player-score-total">
+							<span id="dg-main-scoring-relative-par">+3</span>
+							(<span id="dg-main-scoring-score-total">14</span>)
+						</div>
+						<div>
+							<div class="dg-number-input">
+								<input onclick="dg_input_number_decrementor(this);" type="button" class="dg-incrementor" value="-">
+								<input type="number" id="dg-main-scoring-player-hole-score" name="" value="1">
+								<input onclick="dg_input_number_incrementor(this);" type="button" class="dg-incrementor" value="+">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="dg-button-group-container">
+				<input onclick="dg_main_scoring_change_hole(this);" type="button" id="dg-main-scoring-previous" name="" value="Previous">
+				<input onclick="dg_main_scoring_change_hole(this);" type="button" id="dg-main-scoring-next" name="" value="Next">
+			</div>
+		</div>
+		<div id="dg-scorecard-container" class="dg-page"><!--final scorecard page-->
+			<div class="dg-scorecard-player-container" data-playerid="1">
+				<h3 class="dg-scorecard-player-heading">
+					<span class="dg-scorecard-player-name">Player name</span>
+					<span class="dg-scorecard-score-total">+11(11)</span>
+				</h3>
+				<table class="dg-scorecard-table dg-scorecard-holes-1-9"> <!-- Holes 1-9 -->
+					<!--<caption>Holes 1-9</caption>-->
+					<colgroup>
+						<col class="dg-hole-1"></col><!-- Use js to assign style attr (bgcolor) on the col tag -->
+						<col class="dg-hole-2"></col>
+						<col class="dg-hole-3"></col>
+						<col class="dg-hole-4"></col>
+						<col class="dg-hole-5"></col>
+						<col class="dg-hole-6"></col>
+						<col class="dg-hole-7"></col>
+						<col class="dg-hole-8"></col>
+						<col class="dg-hole-9"></col>
+					</colgroup>
+					<thead>
+						<tr class="dg-scorecard-hole-number"> <!-- Hole number -->
+							<th class="dg-scorecard-hole-number-1">1</th>
+							<th class="dg-scorecard-hole-number-2">2</th>
+							<th class="dg-scorecard-hole-number-3">3</th>
+							<th class="dg-scorecard-hole-number-4">4</th>
+							<th class="dg-scorecard-hole-number-5">5</th>
+							<th class="dg-scorecard-hole-number-6">6</th>
+							<th class="dg-scorecard-hole-number-7">7</th>
+							<th class="dg-scorecard-hole-number-8">8</th>
+							<th class="dg-scorecard-hole-number-9">9</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr class="dg-scorecard-hole-par"> <!-- Hole par -->
+							<td class="dg-scorecard-relative-par-1">test</td>
+							<td class="dg-scorecard-relative-par-2"></td>
+							<td class="dg-scorecard-relative-par-3"></td>
+							<td class="dg-scorecard-relative-par-4"></td>
+							<td class="dg-scorecard-relative-par-5"></td>
+							<td class="dg-scorecard-relative-par-6"></td>
+							<td class="dg-scorecard-relative-par-7"></td>
+							<td class="dg-scorecard-relative-par-8"></td>
+							<td class="dg-scorecard-relative-par-9"></td>
+						</tr>
+						<tr class="dg-scorecard-hole-score"> <!-- Hole score -->
+							<td class="dg-scorecard-score-1"></td>
+							<td class="dg-scorecard-score-2"></td>
+							<td class="dg-scorecard-score-3"></td>
+							<td class="dg-scorecard-score-4"></td>
+							<td class="dg-scorecard-score-5"></td>
+							<td class="dg-scorecard-score-6"></td>
+							<td class="dg-scorecard-score-7"></td>
+							<td class="dg-scorecard-score-8"></td>
+							<td class="dg-scorecard-score-9"></td>
+						</tr>
+					</tbody>
+				</table>
+				<table class="dg-scorecard-table dg-scorecard-holes-10-18"> <!-- Holes 10-18 -->
+					<!--<caption>Holes 10-18</caption>-->
+					<colgroup>
+						<col class="dg-hole-10"></col><!-- Use js to assign style attr (bgcolor) on the col tag -->
+						<col class="dg-hole-11"></col>
+						<col class="dg-hole-12"></col>
+						<col class="dg-hole-13"></col>
+						<col class="dg-hole-14"></col>
+						<col class="dg-hole-15"></col>
+						<col class="dg-hole-16"></col>
+						<col class="dg-hole-17"></col>
+						<col class="dg-hole-18"></col>
+					</colgroup>
+					<thead>
+						<tr class="dg-scorecard-hole-number"> <!-- Hole number -->
+							<th class="dg-scorecard-hole-number-10">10</th>
+							<th class="dg-scorecard-hole-number-11">11</th>
+							<th class="dg-scorecard-hole-number-12">12</th>
+							<th class="dg-scorecard-hole-number-13">13</th>
+							<th class="dg-scorecard-hole-number-14">14</th>
+							<th class="dg-scorecard-hole-number-15">15</th>
+							<th class="dg-scorecard-hole-number-16">16</th>
+							<th class="dg-scorecard-hole-number-17">17</th>
+							<th class="dg-scorecard-hole-number-18">18</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr class="dg-scorecard-hole-par"> <!-- Hole par -->
+							<td class="dg-scorecard-relative-par-10"></td>
+							<td class="dg-scorecard-relative-par-11"></td>
+							<td class="dg-scorecard-relative-par-12"></td>
+							<td class="dg-scorecard-relative-par-13"></td>
+							<td class="dg-scorecard-relative-par-14"></td>
+							<td class="dg-scorecard-relative-par-15"></td>
+							<td class="dg-scorecard-relative-par-16"></td>
+							<td class="dg-scorecard-relative-par-17"></td>
+							<td class="dg-scorecard-relative-par-18"></td>
+						</tr>
+						<tr class="dg-scorecard-hole-score"> <!-- Hole score -->
+							<td class="dg-scorecard-score-10"></td>
+							<td class="dg-scorecard-score-11"></td>
+							<td class="dg-scorecard-score-12"></td>
+							<td class="dg-scorecard-score-13"></td>
+							<td class="dg-scorecard-score-14"></td>
+							<td class="dg-scorecard-score-15"></td>
+							<td class="dg-scorecard-score-16"></td>
+							<td class="dg-scorecard-score-17"></td>
+							<td class="dg-scorecard-score-18"></td>
+						</tr>
+					</tbody>
+				</table>
+				<table class="dg-scorecard-table dg-scorecard-holes-19-27"> <!-- Holes 19-27 -->
+					<caption>Holes 19-27</caption>
+					<colgroup>
+						<col class="dg-hole-19"></col><!-- Use js to assign style attr (bgcolor) on the col tag -->
+						<col class="dg-hole-20"></col>
+						<col class="dg-hole-21"></col>
+						<col class="dg-hole-22"></col>
+						<col class="dg-hole-23"></col>
+						<col class="dg-hole-24"></col>
+						<col class="dg-hole-25"></col>
+						<col class="dg-hole-26"></col>
+						<col class="dg-hole-27"></col>
+					</colgroup>
+					<thead>
+						<tr class="dg-scorecard-hole-number"> <!-- Hole number -->
+							<th class="dg-scorecard-hole-number-19">19</th>
+							<th class="dg-scorecard-hole-number-20">20</th>
+							<th class="dg-scorecard-hole-number-21">21</th>
+							<th class="dg-scorecard-hole-number-22">22</th>
+							<th class="dg-scorecard-hole-number-23">23</th>
+							<th class="dg-scorecard-hole-number-24">24</th>
+							<th class="dg-scorecard-hole-number-25">25</th>
+							<th class="dg-scorecard-hole-number-26">26</th>
+							<th class="dg-scorecard-hole-number-27">27</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr class="dg-scorecard-hole-par"> <!-- Hole par -->
+							<td class="dg-scorecard-relative-par-19"></td>
+							<td class="dg-scorecard-relative-par-20"></td>
+							<td class="dg-scorecard-relative-par-21"></td>
+							<td class="dg-scorecard-relative-par-22"></td>
+							<td class="dg-scorecard-relative-par-23"></td>
+							<td class="dg-scorecard-relative-par-24"></td>
+							<td class="dg-scorecard-relative-par-25"></td>
+							<td class="dg-scorecard-relative-par-26"></td>
+							<td class="dg-scorecard-relative-par-27"></td>
+						</tr>
+						<tr class="dg-scorecard-hole-score"> <!-- Hole score -->
+							<td class="dg-scorecard-score-19"></td>
+							<td class="dg-scorecard-score-20"></td>
+							<td class="dg-scorecard-score-21"></td>
+							<td class="dg-scorecard-score-22"></td>
+							<td class="dg-scorecard-score-23"></td>
+							<td class="dg-scorecard-score-24"></td>
+							<td class="dg-scorecard-score-25"></td>
+							<td class="dg-scorecard-score-26"></td>
+							<td class="dg-scorecard-score-27"></td>
+						</tr>
+					</tbody>
+				</table>
+				<table class="dg-scorecard-table dg-scorecard-holes-28-36"> <!-- Holes 28-36 -->
+					<caption>Holes 28-36</caption>
+					<colgroup>
+						<col class="dg-hole-28"></col><!-- Use js to assign style attr (bgcolor) on the col tag -->
+						<col class="dg-hole-29"></col>
+						<col class="dg-hole-30"></col>
+						<col class="dg-hole-31"></col>
+						<col class="dg-hole-32"></col>
+						<col class="dg-hole-33"></col>
+						<col class="dg-hole-34"></col>
+						<col class="dg-hole-35"></col>
+						<col class="dg-hole-36"></col>
+					</colgroup>
+					<thead>
+						<tr class="dg-scorecard-hole-number"> <!-- Hole number -->
+							<th class="dg-scorecard-hole-number-28">28</th>
+							<th class="dg-scorecard-hole-number-29">29</th>
+							<th class="dg-scorecard-hole-number-30">30</th>
+							<th class="dg-scorecard-hole-number-31">31</th>
+							<th class="dg-scorecard-hole-number-32">32</th>
+							<th class="dg-scorecard-hole-number-33">33</th>
+							<th class="dg-scorecard-hole-number-34">34</th>
+							<th class="dg-scorecard-hole-number-35">35</th>
+							<th class="dg-scorecard-hole-number-36">36</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr class="dg-scorecard-hole-par"> <!-- Hole par -->
+							<td class="dg-scorecard-relative-par-28"></td>
+							<td class="dg-scorecard-relative-par-29"></td>
+							<td class="dg-scorecard-relative-par-30"></td>
+							<td class="dg-scorecard-relative-par-31"></td>
+							<td class="dg-scorecard-relative-par-32"></td>
+							<td class="dg-scorecard-relative-par-33"></td>
+							<td class="dg-scorecard-relative-par-34"></td>
+							<td class="dg-scorecard-relative-par-35"></td>
+							<td class="dg-scorecard-relative-par-36"></td>
+						</tr>
+						<tr class="dg-scorecard-hole-score"> <!-- Hole score -->
+							<td class="dg-scorecard-score-28"></td>
+							<td class="dg-scorecard-score-29"></td>
+							<td class="dg-scorecard-score-30"></td>
+							<td class="dg-scorecard-score-31"></td>
+							<td class="dg-scorecard-score-32"></td>
+							<td class="dg-scorecard-score-33"></td>
+							<td class="dg-scorecard-score-34"></td>
+							<td class="dg-scorecard-score-35"></td>
+							<td class="dg-scorecard-score-36"></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		
+	</article>
+</body>
+</html>

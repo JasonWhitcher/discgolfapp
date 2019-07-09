@@ -1,0 +1,41 @@
+{
+	"short_name": "DG Scoring",
+	"name": "Disc Golf Scoring App",
+	"icons": [
+		{
+			"src": "/images/icon-dg-128.png",
+			"type": "image/png",
+			"sizes": "128x128"
+		},
+		{
+			"src": "/images/icon-dg-144.png",
+			"type": "image/png",
+			"sizes": "144x144"
+		},
+		{
+			"src": "/images/icon-dg-152.png",
+			"type": "image/png",
+			"sizes": "152x152"
+		},
+		{
+			"src": "/images/icon-dg-192.png",
+			"type": "image/png",
+			"sizes": "192x192"
+		},
+		{
+			"src": "/images/icon-dg-256.png",
+			"type": "image/png",
+			"sizes": "256x256"
+		},
+		{
+			"src": "/images/icon-dg-512.png",
+			"type": "image/png",
+			"sizes": "512x512"
+		}
+	],
+	"start_url": "/index.html",
+	"background_color": "#CDFF88",
+	"display": "standalone",
+	"theme_color": "#CDFF88",
+	"orientation": "portrait"
+}
