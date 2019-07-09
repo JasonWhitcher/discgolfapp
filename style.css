@@ -5,6 +5,7 @@ Stylesheet for pwa-disc-golf
   color: gray; }
 
 body {
+  max-width: 768px;
   margin: 0;
   padding: 1px;
   font-size: 18px;

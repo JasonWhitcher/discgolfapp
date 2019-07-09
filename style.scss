@@ -14,6 +14,7 @@ $text-color-primary: gray;
 	color: $text-color-primary;
 }
 body {
+	max-width: 768px;
 	margin: 0;
 	padding: 1px;
 	font-size: $text-size-base;
