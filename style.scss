@@ -1,0 +1,251 @@
+/*
+Stylesheet for pwa-disc-golf
+*/
+
+$color-primary: #CDFF88;
+$color-secondary: #CC8438;
+$color-background: white;
+
+$text-size-base: 18px;
+$text-color-primary: gray;
+
+// Style resets
+* {
+	color: $text-color-primary;
+}
+body {
+	margin: 0;
+	padding: 1px;
+	font-size: $text-size-base;
+	background-color: $color-background;
+	
+}
+h1 {font-size: 1.4em;}
+h2 {font-size: 1.3em;}
+h3 {font-size: 1.2em;}
+h4, h5, h6 {font-size: 1.1em;}
+a,
+a:hover,
+a:visited,
+a:active {
+	text-decoration: none;
+	color: $color-secondary;
+}
+label {
+	font-size: $text-size-base;
+}
+input[type="text"] {
+	padding: 3px;
+	border: 1px solid $color-primary;
+	border-radius: 5px;
+	font-size: 1.2em;
+}
+input[type="button"],
+input[type="submit"] {
+	width: 33%;
+	font-size: $text-size-base;
+	border: none;
+	border-radius: 5px;
+	background-color: $color-primary;
+}
+
+.dg-strong {
+	font-weight: bold;
+}
+/*hide default spinner buttons*/
+input[type="number"] {
+  -webkit-appearance: textfield;
+     -moz-appearance: textfield;
+          appearance: textfield;
+}
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none;
+}
+/*end--hide default spinner buttons*/
+.dg-number-input {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	flex-wrap: nowrap;
+	align-items: center;
+	label {
+		display: inline-block;
+		margin-right: 2.0em;
+	}
+	div.dg-number-input {
+		display: inline-block;
+	}
+	input[type="number"] {
+		height: 1.2em;
+		width: 1.5em;
+		margin: 0 1.0em;
+		padding: 5px;
+		border: 1px solid $color-primary;
+		font-size: 1.2em;
+	}
+	input.dg-incrementor {
+		margin: 0;
+		padding: 0;
+		border: 1px solid $color-primary;
+		height: 1.3em;
+		width: 1.3em;
+		border-radius: 50% 50%;
+		font-size: 1.3em;
+		background-color: $color-background;
+	}
+}
+
+header {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	background-color: $color-primary;
+	nav,
+	h1 {
+		padding: 0 10px;
+	}
+}
+article {
+	position: relative;
+	.dg-modal {
+		/*position: relative;
+		top: 0px;
+		left: 0px;*/
+		width: 88%;
+		padding: 05%;
+		border: 1px solid $color-secondary;
+	}
+	.dg-menu-container {
+		font-size: 1.5em;
+	}
+}
+.dg-button-group-container {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-evenly;
+	align-items: center;
+	margin-top: 2.0em;
+	input[type="button"],
+	input[type="submit"] {
+		margin: 10px 5px;
+		padding: 0.5em;
+	}
+}
+
+/* Functionality styles */
+
+// All modals are not visible by default.
+#dg-menu-container,
+#dg-change-par-container,
+#dg-end-game-container,
+#dg-add-players-container,
+#dg-starting-hole-container,
+#dg-set-par-container,
+#dg-start-game,
+#dg-main-scoring-container,
+#dg-scorecard-container {
+	display: none;
+}
+
+.dg-show {
+	display: block !important;
+	//z-index: 10;
+}
+
+/* Page/Modal specific styles */
+
+.dg-menu-container {
+	a {
+		font-size: 1.2em;
+	}
+}
+
+#dg-starting-hole-container {
+	input#dg-button-set-starting-hole {
+		//align-self: center;
+		width: 66%;
+	}
+}
+
+#dg-set-par-container {
+	#dg-set-par-current-hole {
+		font-size: 1.3em;
+		font-weight: bold;
+	}
+}
+
+#dg-main-scoring-container {
+	#dg-main-scoring-hole-par {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-evenly;
+		align-items: center;
+		margin: 0.4em 0;
+		#dg-main-scoring-current-hole,
+		#dg-main-scoring-current-par {
+			font-size: 1.3em;
+		}
+	}
+	.dg-main-scoring-line {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		align-items: center;
+		padding: 0.3em;
+		border-bottom: 1px solid $color-primary;
+		/*+ p {
+			width: 150px;
+		}*/
+		.dg-main-scoring-player-name {
+			width: 33%;
+		}
+	}
+}
+
+#dg-scorecard-container {
+	.dg-scorecard-player-container {
+		margin-bottom: 1.5em;
+	}
+	.dg-scorecard-player-heading {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-evenly;
+		align-items: center;
+		padding: 0;
+		margin: 0.2em 0;
+	}
+	table {
+		width: 100%;
+		border-collapse: collapse;
+		margin-bottom: 0.4em;
+		td {
+			border: 1px solid $color-secondary;
+			text-align: center;
+		}
+	}
+}
+// Hide scorecard tables/part by default.
+.dg-scorecard-holes-1-9,
+.dg-scorecard-holes-10-18,
+.dg-scorecard-holes-19-27,
+.dg-scorecard-holes-28-36 {
+	display: none;
+}
+// Class styles for scorecard page.
+.dg-scorecard-hole-heading {
+	background-color: #ffffff;
+}
+.dg-scorecard-hole-not-played {
+	background-color: #999999;
+}
+.dg-scorecard-hole-under-par {
+	background-color: #c6ffbc;
+}
+.dg-scorecard-hole-on-par {
+	background-color: #f2f2f2;
+}
+.dg-scorecard-hole-over-par {
+	background-color: #fcd9da;
+}
