@@ -5,6 +5,7 @@ Stylesheet for pwa-disc-golf
   color: gray; }
 
 body {
+  overscroll-behavior: contain;
   max-width: 768px;
   margin: 0 auto;
   padding: 1px;

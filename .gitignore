@@ -1,5 +1,10 @@
+#Portfoilo
+#Disc Golf Scoring
+#Progressive Web App
 /discgolfapp.sublime-project
 /discgolfapp.sublime-workspace
-/Notes/*.*
-/images/drawing.svg
+/style.css.map
+
+/Notes/
+/images/*.svg
 /images/drawing.svg.2019_06_25_17_01_01.0.svg

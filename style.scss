@@ -14,12 +14,12 @@ $text-color-primary: gray;
 	color: $text-color-primary;
 }
 body {
+	overscroll-behavior: none;//contain;
 	max-width: 768px;
 	margin: 0 auto;
 	padding: 1px;
 	font-size: $text-size-base;
 	background-color: $color-background;
-	
 }
 h1 {font-size: 1.4em;}
 h2 {font-size: 1.3em;}
